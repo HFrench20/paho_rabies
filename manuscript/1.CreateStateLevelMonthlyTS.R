@@ -4,15 +4,15 @@
 ## between Jan 1995 and now by country and by state.
 
 rm(list=ls())
-setwd("~/Dropbox/PAHO_RShiny")
+setwd("~/Code/paho_rabies_hf/manuscript")
 
 library(maptools)
 library(zoo)
 library(lubridate)
-source("~/Dropbox/PAHOsurveillance/Analysis/R/states_ts.R")
+source("~/Code/paho_rabies_hf/manuscript/R/states_ts.R")
 
 ## data
-dogs <- read.csv("~/Dropbox/PAHOsurveillance/Analysis/data/SIRVERA_dogs16(clean_statenames).csv")
+dogs <- read.csv("~/Code/paho_rabies_hf/manuscript/data/SIRVERA_dogs16(clean_statenames).csv")
 countries <- c("Mexico", "Brazil")
 
 ## set all dates from Jan 1995 to Dec 2015
