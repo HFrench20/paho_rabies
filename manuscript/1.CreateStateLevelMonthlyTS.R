@@ -7,6 +7,8 @@ rm(list=ls())
 setwd("~/Code/paho_rabies_hf/manuscript")
 
 library(maptools)
+library(rgdal)
+library(sp)
 library(zoo)
 library(lubridate)
 source("~/Code/paho_rabies_hf/manuscript/R/states_ts.R")
@@ -31,8 +33,8 @@ for (l in 1:length(countries)){
   country <- subset(dogs, Pais == cn & Ano >= yr)
   yrs <- sort(unique(country$Ano))
 
-  country.f <- paste0("data/ShapeFiles/America_Adm_1/", cn, ".shp")
-  sp.country <- readShapePoly(country.f)
+  country.f <- paste0("data/ShapeFiles_2/America_Adm_1/", cn, ".shp")
+  sp.country <- rgdal::readOGR(country.f)
   states <- sp.country@data$ADM1_NAME
 
   ## sort out full dates (months included): Converted month 0 to 1 bc do not want to exclude evidence of circulation
