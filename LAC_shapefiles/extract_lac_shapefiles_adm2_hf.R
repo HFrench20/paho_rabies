@@ -7,12 +7,13 @@ library(svMisc) # for progress print-out
 
 # Set global options for script
 options(stringsAsFactors = FALSE, dplyr.summarise.inform = FALSE)
+setwd("~/Code/paho_rabies_hf")
 
 # Load shapefiles
-lac_shapefile <- read_sf("data/raw/Adm2_AMRO_Sep2013.shp")
+lac_shapefile <- read_sf("manuscript/data/ShapeFiles_2/America_Adm_2/Adm2_AMRO_Sep2013.shp")
 
 # create folder for processed data
-dir.create("data/processed")
+dir.create("manuscript/data/ShapeFiles_2/America_Adm_2/processed")
 
 #----- Process and save shapefiles ---------------------------------------------
 
@@ -31,7 +32,7 @@ for(i in 1:length(countries)){
     filter(CNTRY_NAME == countries[i])
 
   # Set filepath and create folder if it doesn't already exist
-  file_path = paste0("data/processed/", gsub(" ", "_", countries[i]))
+  file_path = paste0("manuscript/data/ShapeFiles_2/America_Adm_2/processed/", gsub(" ", "_", countries[i]))
   ifelse(!dir.exists(file.path(file_path)), dir.create(file.path(file_path)), FALSE)
 
   # Set filename based on country
@@ -47,9 +48,9 @@ for(i in 1:length(countries)){
 #----- Check a few shapefiles --------------------------------------------------
 
 # Load and view Ecuador
-ecuador_shp = lac_shapefile <- read_sf("data/processed/Ecuador/Ecuador_ADM2.shp")
+ecuador_shp = lac_shapefile <- read_sf("manuscript/data/ShapeFiles_2/America_Adm_2/processed/Ecuador/Ecuador_ADM2.shp")
 plot(ecuador_shp$geometry)
 
 # Load and view Nicaragua
-nicaragua_shp = lac_shapefile <- read_sf("data/processed/Nicaragua/Nicaragua_ADM2.shp")
+nicaragua_shp = lac_shapefile <- read_sf("manuscript/data/ShapeFiles_2/America_Adm_2/processed/Nicaragua/Nicaragua_ADM2.shp")
 plot(nicaragua_shp$geometry)
