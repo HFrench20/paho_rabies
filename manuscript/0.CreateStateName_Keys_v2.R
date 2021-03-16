@@ -80,7 +80,7 @@ for (l in 1:length(countries)){
   
   ## ---------------------- Compare state names to Key subset --------------------------------
   
-  # anti_join => return all rows from x without a match in y.
+  # anti_join => return all rows from x without a match in y. (input = two data frames)
   # x = the surveillance data state names
   # y = the shape files state names
   # by = NULL because there is only one variable anyway
