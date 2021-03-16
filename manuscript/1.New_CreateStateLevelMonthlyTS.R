@@ -1,32 +1,26 @@
-### SIRVERA DATA: Mexico & Brazil yearly classification from 2005 to 2015
+### SIRVERA DATA: LAC yearly classification from 2005 to 2015
 ## The script takes SIRVERA data (raw SIRVERA data with attempted name corrections),
-## subsets for Mexico and Brazil and produces consolidated monthly time series of cases
+## subsets for countries and produces consolidated monthly time series of cases
 ## between Jan 1995 and now by country and by state.
 
 rm(list=ls())
 setwd("~/Code/paho_rabies_hf/manuscript")
 
 library(maptools)
-library(rgdal)
-library(sp)
+library(rgdal) # for writing shape file to Spatial sp object
+library(sp) # for handling sp object
 library(zoo)
 library(dplyr)
 library(lubridate)
 library(ISOcodes)
-source("~/Code/paho_rabies_hf/manuscript/R/states_ts.R")
+source("~/Code/paho_rabies_hf/manuscript/R/adm1_ts.R")
 
 ## data
-dogs <- read.csv("~/Code/paho_rabies_hf/manuscript/data/SIRVERA_dogs16(clean_statenames).csv")
-
-## edit country names to match ISO 3166-1 names
-dogs$Pais[which(dogs$Pais=="Bolivia")] <- "Bolivia, Plurinational State of"
-dogs$Pais[which(dogs$Pais=="French Guyana")] <- "French Guiana"
-dogs$Pais[which(dogs$Pais=="United States of America")] <- "United States"
-dogs$Pais[which(dogs$Pais=="Venezuela")] <- "Venezuela, Bolivarian Republic of"
+dogs <- read.csv("~/Code/paho_rabies_hf/manuscript/data/SIRVERA_dogs16_ISO_GID1.csv")
 
 ## set geographic data
-countries <- c(unique(dogs$Pais))
-adm.level <- "adm1"
+countries <- c(unique(dogs$ADM0_ISO))
+adm.level <- 1
 
 ## set all dates from Jan 1995 to Dec 2015
 current.date <- as.Date("2015-12-01") ## NOTE: this should be automated for each time data is updated
@@ -36,46 +30,52 @@ dates <- strftime(strptime(dates, format="%Y-%m-%d"),"%Y-%m")
 ###-------------------------------Subset Cases Data-------------------------------###
 
 ## set variable names which is used in writing the output csv 
+# not sure what "names" is. See if it is in future scripts. 
 names <- countries
 
 for (l in 1:length(countries)){
   ## define country and yrs of interest
   cn = countries[l]
   yr = 1995
-
-  ## generate 3 letter country code (ISO 3166-1 Alpha-3)
-  ISO.row.cn <- filter(ISO_3166_1, Name == cn)
-  alpha.cn <- ISO.row.cn$Alpha_3
   
   ## Create path to country shape files directory
-  country.dir <- paste0("data/ShapeFiles_2/", alpha.cn, "_adm_shp")
-  country.adm <- paste0(alpha.cn, "_", adm.level)
+  country.dir <- paste0("data/ShapeFiles_3/", "gadm36_", cn, "_shp")
+  country.shp <- paste0("gadm36_", cn, "_", adm.level)
   
   ## check if shape data exists for country[l] at admn level specified. If true, continue.
-  if (file.exists(paste0(country.dir, "/", country.adm, ".shp"))) { 
+  if (file.exists(paste0(country.dir, "/", country.shp, ".shp"))) { 
     
     print(paste("Shape data available for", cn))
     
     ## subset country and yrs of interest
-    country <- subset(dogs, Pais == cn & Ano >= yr)
+    # If there is no data from 1995 or later, the country subset will be empty and it will cause an error. 
+    country <- subset(dogs, ADM0_ISO == cn & Ano >= yr)
     yrs <- sort(unique(country$Ano))
     
-    ## read shape file into Spatial object
-    sp.country <- rgdal::readOGR(dsn=country.dir, layer=country.adm)
-    states <- sp.country@data$NAME_1
-    
-    ## sort out full dates (months included): Converted month 0 to 1 bc do not want to exclude evidence of circulation
-    country$Mes[which(country$Mes=="0")] <- 1
-    country$date <- as.POSIXct(as.yearmon(paste(country$Ano, country$Mes, sep="-")))
-    country$date <- strftime(strptime(country$date, format="%Y-%m-%d"),"%Y-%m")
-    
-    ## timeseries: sum all cases for each month and year/ state
-    country_ts = states_ts(dates = dates, states = states, data = country)
-    fb <- paste0("output_new/", cn, "_monthly_cases_state_", adm.level, ".csv")
-    write.csv(country_ts,fb,row.names=F)
-    
-    print(setdiff(unique(country$UnidMaior),states))
-    print("-------------------- DONE ----------------------------")
+    if (nrow(country) == 0) { 
+      print(" ****** NOTICE *****")
+      print(paste("No dates in range for", cn))
+      print("-------------------- DONE ----------------------------")
+    } else { 
+        
+      ## read shape file into Spatial object and extract GID_1 codes for states
+      sp.country <- rgdal::readOGR(dsn=country.dir, layer=country.shp)
+      states <- sp.country@data$GID_1
+      
+      ## sort out full dates (months included): Converted month 0 to 1 bc do not want to exclude evidence of circulation
+      country$Mes[which(country$Mes=="0")] <- 1
+      country$date <- as.POSIXct(as.yearmon(paste(country$Ano, country$Mes, sep="-")))
+      country$date <- strftime(strptime(country$date, format="%Y-%m-%d"),"%Y-%m")
+      
+      ## timeseries: sum all cases for each month and year/ state
+      country_ts = adm1_ts(dates = dates, states = states, data = country)
+      fb <- paste0("output_new/", cn, "_ADM", adm.level, "_monthly_cases.csv")
+      write.csv(country_ts,fb,row.names=F)
+      
+      #print(setdiff(unique(country$UnidMaior),states))
+      print("-------------------- DONE ----------------------------")
+      
+      }
     
   } else {
     print(paste("No shape data available for", cn))
