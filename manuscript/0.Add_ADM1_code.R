@@ -45,6 +45,10 @@ for (l in 1:length(countries)){
   
   # Stack is onto the stacking data frame
   stacking.df <- rbind(stacking.df, merged.cn)
+  
+  dfrows <- nrow(stacking.df)
+  print(paste(cn, "done....... stacking.df has rows:", dfrows))
+  
 }
  
 ## ------------------------- Tidy final output and export ---------------------------
