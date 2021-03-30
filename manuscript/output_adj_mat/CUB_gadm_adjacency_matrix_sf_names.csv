@@ -1,0 +1,17 @@
+"","Camaguey","Ciego de Avila","Cienfuegos","Ciudad de la Habana","Granma","Guantanamo","Holguin","Isla de la Juventud","La Habana","Las Tunas","Matanzas","Mayabeque","Pinar del Rio","Sancti Spiritus","Santiago de Cuba","Villa Clara"
+"Camaguey",0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+"Ciego de Avila",1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+"Cienfuegos",0,0,0,0,0,0,0,0,0,0,1,0,0,1,0,1
+"Ciudad de la Habana",0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0
+"Granma",0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0
+"Guantanamo",0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0
+"Holguin",0,0,0,0,1,1,0,0,0,1,0,0,0,0,1,0
+"Isla de la Juventud",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"La Habana",0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0
+"Las Tunas",1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0
+"Matanzas",0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,1
+"Mayabeque",0,0,0,1,0,0,0,0,1,0,1,0,0,0,0,0
+"Pinar del Rio",0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+"Sancti Spiritus",0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1
+"Santiago de Cuba",0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0
+"Villa Clara",0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,0

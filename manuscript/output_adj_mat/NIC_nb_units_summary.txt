@@ -1,0 +1,14 @@
+[1] "Country: NIC"
+Neighbour list object:
+Number of regions: 18 
+Number of nonzero links: 82 
+Percentage nonzero weights: 25.30864 
+Average number of links: 4.555556 
+Link number distribution:
+
+2 3 4 5 6 7 
+1 2 7 3 4 1 
+1 least connected region:
+16 with 2 links
+1 most connected region:
+15 with 7 links

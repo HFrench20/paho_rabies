@@ -1,0 +1,14 @@
+[1] "Country: BRA"
+Neighbour list object:
+Number of regions: 27 
+Number of nonzero links: 108 
+Percentage nonzero weights: 14.81481 
+Average number of links: 4 
+Link number distribution:
+
+1 2 3 4 5 6 7 9 
+2 5 7 2 3 6 1 1 
+2 least connected regions:
+3 21 with 1 link
+1 most connected region:
+5 with 9 links

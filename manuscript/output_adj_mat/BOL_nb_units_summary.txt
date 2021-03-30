@@ -1,0 +1,14 @@
+[1] "Country: BOL"
+Neighbour list object:
+Number of regions: 9 
+Number of nonzero links: 32 
+Percentage nonzero weights: 39.50617 
+Average number of links: 3.555556 
+Link number distribution:
+
+2 3 4 6 
+2 2 4 1 
+2 least connected regions:
+6 9 with 2 links
+1 most connected region:
+2 with 6 links

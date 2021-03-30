@@ -1,0 +1,16 @@
+[1] "Country: HND"
+Neighbour list object:
+Number of regions: 18 
+Number of nonzero links: 68 
+Percentage nonzero weights: 20.98765 
+Average number of links: 3.777778 
+1 region with no links:
+11
+Link number distribution:
+
+0 2 3 4 5 6 7 
+1 2 5 5 2 2 1 
+2 least connected regions:
+9 14 with 2 links
+1 most connected region:
+8 with 7 links

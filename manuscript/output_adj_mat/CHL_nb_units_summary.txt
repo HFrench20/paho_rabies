@@ -1,0 +1,14 @@
+[1] "Country: CHL"
+Neighbour list object:
+Number of regions: 16 
+Number of nonzero links: 32 
+Percentage nonzero weights: 12.5 
+Average number of links: 2 
+Link number distribution:
+
+ 1  2  3 
+ 2 12  2 
+2 least connected regions:
+4 11 with 1 link
+2 most connected regions:
+8 16 with 3 links

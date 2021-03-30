@@ -1,0 +1,14 @@
+[1] "Country: SLV"
+Neighbour list object:
+Number of regions: 14 
+Number of nonzero links: 52 
+Percentage nonzero weights: 26.53061 
+Average number of links: 3.714286 
+Link number distribution:
+
+2 3 4 5 
+4 1 4 5 
+4 least connected regions:
+1 7 8 14 with 2 links
+5 most connected regions:
+3 4 5 9 11 with 5 links

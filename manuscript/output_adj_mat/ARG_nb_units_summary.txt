@@ -1,0 +1,16 @@
+[1] "Country: ARG"
+Neighbour list object:
+Number of regions: 24 
+Number of nonzero links: 86 
+Percentage nonzero weights: 14.93056 
+Average number of links: 3.583333 
+1 region with no links:
+23
+Link number distribution:
+
+0 1 2 3 4 5 6 7 
+1 4 3 3 4 4 4 1 
+4 least connected regions:
+5 10 14 20 with 1 link
+1 most connected region:
+6 with 7 links

@@ -1,0 +1,17 @@
+"","Aisen del General Carlos Ibanez del Campo","Antofagasta","Araucania","Arica y Parinacota","Atacama","Bio-Bio","Coquimbo","Libertador General Bernardo O'Higgins","Los Lagos","Los Rios","Magallanes y Antartica Chilena","Maule","Nuble","Region Metropolitana de Santiago","Tarapaca","Valparaiso"
+"Aisen del General Carlos Ibanez del Campo",0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0
+"Antofagasta",0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0
+"Araucania",0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0
+"Arica y Parinacota",0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+"Atacama",0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+"Bio-Bio",0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0
+"Coquimbo",0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1
+"Libertador General Bernardo O'Higgins",0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1
+"Los Lagos",1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+"Los Rios",0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0
+"Magallanes y Antartica Chilena",1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+"Maule",0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,0
+"Nuble",0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0
+"Region Metropolitana de Santiago",0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1
+"Tarapaca",0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+"Valparaiso",0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,0

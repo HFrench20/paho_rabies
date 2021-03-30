@@ -1,0 +1,16 @@
+[1] "Country: ECU"
+Neighbour list object:
+Number of regions: 24 
+Number of nonzero links: 108 
+Percentage nonzero weights: 18.75 
+Average number of links: 4.5 
+1 region with no links:
+9
+Link number distribution:
+
+0 2 3 4 5 6 7 8 
+1 1 6 2 7 5 1 1 
+1 least connected region:
+20 with 2 links
+1 most connected region:
+10 with 8 links

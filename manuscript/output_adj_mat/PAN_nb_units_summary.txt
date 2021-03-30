@@ -1,0 +1,14 @@
+[1] "Country: PAN"
+Neighbour list object:
+Number of regions: 13 
+Number of nonzero links: 44 
+Percentage nonzero weights: 26.0355 
+Average number of links: 3.384615 
+Link number distribution:
+
+2 3 4 5 6 
+3 5 3 1 1 
+3 least connected regions:
+1 6 9 with 2 links
+1 most connected region:
+13 with 6 links

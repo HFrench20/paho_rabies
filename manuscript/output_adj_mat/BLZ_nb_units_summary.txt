@@ -1,0 +1,14 @@
+[1] "Country: BLZ"
+Neighbour list object:
+Number of regions: 6 
+Number of nonzero links: 18 
+Percentage nonzero weights: 50 
+Average number of links: 3 
+Link number distribution:
+
+2 3 4 
+2 2 2 
+2 least connected regions:
+3 6 with 2 links
+2 most connected regions:
+1 2 with 4 links

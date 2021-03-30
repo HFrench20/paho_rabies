@@ -1,0 +1,14 @@
+[1] "Country: PRY"
+Neighbour list object:
+Number of regions: 18 
+Number of nonzero links: 78 
+Percentage nonzero weights: 24.07407 
+Average number of links: 4.333333 
+Link number distribution:
+
+2 3 4 5 6 7 
+2 5 4 2 2 3 
+2 least connected regions:
+4 5 with 2 links
+3 most connected regions:
+6 16 17 with 7 links

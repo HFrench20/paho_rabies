@@ -1,0 +1,16 @@
+[1] "Country: CUB"
+Neighbour list object:
+Number of regions: 16 
+Number of nonzero links: 40 
+Percentage nonzero weights: 15.625 
+Average number of links: 2.5 
+1 region with no links:
+8
+Link number distribution:
+
+0 1 2 3 4 
+1 1 4 9 1 
+1 least connected region:
+13 with 1 link
+1 most connected region:
+7 with 4 links

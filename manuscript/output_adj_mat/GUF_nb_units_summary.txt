@@ -1,0 +1,14 @@
+[1] "Country: GUF"
+Neighbour list object:
+Number of regions: 2 
+Number of nonzero links: 2 
+Percentage nonzero weights: 50 
+Average number of links: 1 
+Link number distribution:
+
+1 
+2 
+2 least connected regions:
+1 2 with 1 link
+2 most connected regions:
+1 2 with 1 link

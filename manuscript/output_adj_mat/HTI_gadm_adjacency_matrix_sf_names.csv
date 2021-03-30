@@ -1,0 +1,11 @@
+"","Centre","Grand'Anse","L'Artibonite","Nippes","Nord","Nord-Est","Nord-Ouest","Ouest","Sud","Sud-Est"
+"Centre",0,0,1,0,1,1,0,1,1,0
+"Grand'Anse",0,0,0,1,0,0,0,0,1,0
+"L'Artibonite",1,0,0,0,1,0,1,1,0,0
+"Nippes",0,1,0,0,0,0,0,1,1,1
+"Nord",1,0,1,0,0,1,1,0,0,0
+"Nord-Est",1,0,0,0,1,0,0,0,0,0
+"Nord-Ouest",0,0,1,0,1,0,0,0,0,0
+"Ouest",1,0,1,1,0,0,0,0,0,1
+"Sud",1,1,0,1,0,0,0,0,0,1
+"Sud-Est",0,0,0,1,0,0,0,1,1,0

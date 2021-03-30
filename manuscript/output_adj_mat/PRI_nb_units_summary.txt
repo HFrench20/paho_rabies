@@ -1,0 +1,16 @@
+[1] "Country: PRI"
+Neighbour list object:
+Number of regions: 78 
+Number of nonzero links: 366 
+Percentage nonzero weights: 6.015779 
+Average number of links: 4.692308 
+2 regions with no links:
+25 75
+Link number distribution:
+
+ 0  2  3  4  5  6  7  8 
+ 2  4 15 13 17 15 10  2 
+4 least connected regions:
+8 27 49 60 with 2 links
+2 most connected regions:
+42 55 with 8 links

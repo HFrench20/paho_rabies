@@ -1,0 +1,16 @@
+[1] "Country: TTO"
+Neighbour list object:
+Number of regions: 15 
+Number of nonzero links: 42 
+Percentage nonzero weights: 18.66667 
+Average number of links: 2.8 
+1 region with no links:
+14
+Link number distribution:
+
+0 1 2 3 4 5 6 
+1 2 3 5 2 1 1 
+2 least connected regions:
+1 7 with 1 link
+1 most connected region:
+3 with 6 links

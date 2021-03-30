@@ -1,0 +1,16 @@
+[1] "Country: GRD"
+Neighbour list object:
+Number of regions: 7 
+Number of nonzero links: 18 
+Percentage nonzero weights: 36.73469 
+Average number of links: 2.571429 
+1 region with no links:
+1
+Link number distribution:
+
+0 2 3 5 
+1 2 3 1 
+2 least connected regions:
+3 7 with 2 links
+1 most connected region:
+2 with 5 links
