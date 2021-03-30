@@ -151,5 +151,7 @@ print(timeseries.not.exists)
 # a huge amount of setting up matrices and organising data.
 # extracting things from the timeseries and extracting things from the model. 
 
-# does all this for every state at every time point. 
+# does all this for every state at every time point = see in output.
+
+# Katie and I checked together that the output I get is the same as what Itsy was getting...
 
