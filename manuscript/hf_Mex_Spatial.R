@@ -1,6 +1,7 @@
 ## SIRVERA DATA: Mexico - Spatial Code
 rm(list=ls())
-setwd("C:/Users/Kristyna/Dropbox/PAHOsurveillance/Analysis")
+#setwd("C:/Users/Kristyna/Dropbox/PAHOsurveillance/Analysis")
+setwd("~/Code/paho_rabies_hf/manuscript")
 
 library(maptools)
 library(spdep)
@@ -9,10 +10,12 @@ library(rgdal)
 library(rgeos)
 source("R/translate.r")
 
-## import shapefile
-LAC <- readOGR("data/America_Adm_1/adm1_amro_lat_long.shp","adm1_amro_lat_long")
-mex <- readOGR("data/America_Adm_1/Mexico.shp","Mexico")
-proj4string(LAC); proj4string(mex)
+## import shapefile (changed Itsy's paths just to get it working)
+LAC <- readOGR("data/ShapeFiles_2/America_Adm_1/adm1_amro_lat_long.shp","adm1_amro_lat_long")
+mex <- readOGR("data/ShapeFiles_2/America_Adm_1/Mexico.shp","Mexico")
+
+proj4string(LAC); # currently projection is +datum=WGS84
+proj4string(mex) # currently projection is NA
 proj4string(mex) <- proj4string(LAC)
 
 mex@data$ADM1_NAME <- language(mex@data$ADM1_NAME)
@@ -23,6 +26,7 @@ head(mex@data); dim(mex@data) #32 polygons
 unique(mex@data$ADM1_CODE)
 
 nb.units <- poly2nb(mex, queen=FALSE) # function which looks for neighbouring units
+# queen = false : more than one shared point is required; note that more than one shared boundary point does not necessarily mean a shared boundary line
 
 # If mexico has 32 states, then an adjacency matrix is 32x32.
 # In the intersection between two states, use 1's and 0's to say whether they are next to each other or not. 
@@ -39,7 +43,7 @@ mat[1:10,1:10]
 
 ## check whether "1" really do stands for the neighbouring units (adjacent)
 plot(mex) 
-i=17 
+i=3
 plot(mex[i,], col="red", add=T) #focal polygon
 nbs <- which(mat[i,]==1) #rows which correspond to neighbours in shapefile
 plot(mex[nbs,],col="blue",add=T) #adjacent polygons
@@ -50,6 +54,20 @@ mat.df <- data.frame(mat)
 row.names(mat.df) <- mex@data$ADM1_CODE
 colnames(mat.df) <- mex@data$ADM1_CODE
 head(mat.df)
+
+cn <- "mexico"
+path_csv_itsy_code <- paste0("output_adj_mat/", cn, "_itsy_adjacency_matrix_code.csv")
+write.csv(mat.df, path_csv_itsy_code, row.names=TRUE)
+
+mat.name.df <- data.frame(mat)
+row.names(mat.name.df) <- mex@data$ADM1_NAME
+colnames(mat.name.df) <- mex@data$ADM1_NAME
+head(mat.name.df)
+View(mat.name.df)
+
+path_csv_itsy_name <- paste0("output_adj_mat/", cn, "_itsy_adjacency_matrix_names.csv")
+write.csv(mat.name.df, path_csv_itsy_name, row.names=TRUE)
+
 
 # everything above runs fine. 
 # have problems in the following section. 
