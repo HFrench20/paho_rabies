@@ -9,21 +9,90 @@ library(spdep)
 library(raster)
 library(rgdal)
 library(rgeos)
+library(sf)
+library(textclean)
 source("R/translate.R")
+
+# I don't have a LAC specific shape file, I will need to either:
+# - just use the whole world one and plot onto that
+# - try to crop the whole world one (filter for certain countries)
+# - assemble a LAC only one
+
+# I think the cropping option is the easiest, hopefully I can just filter the data frame
+# if I import them as sp objects. 
 
 world <- readOGR("data/ShapeFiles/countries_shp/countries.shp", "countries")
 proj4string(world)
 LAC <- readOGR("data/ShapeFiles/America_Adm_1/adm1_amro_lat_long.shp","adm1_amro_lat_long")
 
-###---------------------------------------Mexico---------------------------------------###
-## import shapefile
-mex <- readOGR("data/ShapeFiles/America_Adm_1/Mexico.shp","Mexico")
+
+## --------------------------- get list of countries --------------------------------
+
+dogs <- read.csv("~/Code/paho_rabies_hf/manuscript/data/SIRVERA_dogs16_ISO_GID1_GID2.csv")
+countries <- c(unique(dogs$ADM0_ISO))
+
+
+###--------------------------------- loop countries ---------------------------------------###
+
+for (l in 1:length(countries)){
+  cn <- countries[l] #country of interest
+  
+  # create path and import shape file 
+  shp.path <- paste0("data/ShapeFiles_3/gadm36_", cn, "_shp/gadm36_", cn, "_1.shp")
+  cn_sp <- readOGR(shp.path)
+  cn_sf <- read_sf(shp.path)
+  
+  # should be able to delete this
+  #proj4string(LAC); proj4string(mex)
+  #proj4string(mex) <- proj4string(LAC)
+  
+  # replace this with my own language code
+  cn_sp@data$NAME_1 <- language(cn_sp@data$NAME_1)
+  
+  # remove non-ascii, and convert to lower case (not sure if this is required here since I use GID_1 code)
+  cn_sp@data$NAME_1 <- replace_non_ascii(cn_sp@data$NAME_1, remove.nonconverted = FALSE)
+  cn_sp@data$NAME_1 <- tolower(cn_sp$NAME_1)
+  cn_sf$NAME_1 <- replace_non_ascii(cn_sf$NAME_1, remove.nonconverted = FALSE)
+  cn_sf$NAME_1 <- tolower(cn_sf$NAME_1)
+  
+  # check input data looks good
+  head(cn_sp@data); dim(cn_sp@data) #32 polygons
+  head(cn_sf); dim(cn_sf) #32 polygons
+  
+  ## import cases info
+  # the TW5yr file comes from the ClassFramesMS/ms2_Country_YearlyClassificationWindows.R
+  # script ms2 applies the classification algorithm from script 3. 
+  # can I just use my output_script3 instead??
+  allstates <- read.csv("output_not_created/Mexico_classified_yearlyTW5yr.csv") # all years
+  path.class <- paste0("output_script3_v2/", cn, "_classified_monthly.csv")
+  class3_allstates <- read.csv(path.class)
+  
+  ## Create images for each year to combine with a slider
+  # note the "states" here is the gid_1
+  yrs <- c(2005:2015)
+  for(i in 1:length(yrs)){
+    yr <- yrs[i]
+    # stuck here! What does this do? I don't know what the TW5yr input should look like... 
+    df.states <- data.frame(state=as.character(class3_allstates$state),
+                         phase=as.character(class3_allstates[,colnames(class3_allstates)==paste0("yr",yr)]))
+    df.states$state <- gsub("[.]", " ", df.states$state)
+    head(df.states)
+    
+  
+}
+
+
+cn_shp <- readOGR("data/ShapeFiles_3/America_Adm_1/Mexico.shp","Mexico")
+
+# should be able to delete this
 proj4string(LAC); proj4string(mex)
 proj4string(mex) <- proj4string(LAC)
 
+# update this using my own language system
 mex@data$ADM1_NAME <- language(mex@data$ADM1_NAME)
 head(mex@data); dim(mex@data) #32 polygons
 
+# do I have this TW5yr?
 ## import cases info
 allstates <- read.csv("output_not_created/Mexico_classified_yearlyTW5yr.csv") # all years
 
