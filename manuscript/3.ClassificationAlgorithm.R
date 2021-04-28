@@ -7,22 +7,23 @@ library(zoo)
 source("R/gap_fc.R")
 source("R/LRmodel_fc.R")
 source("R/RollingWind_fc.R")
-source("R/RemoveWildlifeVar.R")
+#source("R/RemoveWildlifeVar.R")
 
-countries <- c("Mexico", "Brazil")
+countries <- c("MEX", "BRA", "ARG")
 current.date <- as.Date("2015-12-01")
 ms <- seq(as.Date("2000-01-01"), current.date, by="month")
 
 for (l in 1:length(countries)){
   cn <- countries[l] #country of interest
 
+  # I am mising this!!
   ## import adjecency matrix
   adjMat <- read.csv(paste0("data/", cn, "_adjacency_matrix.csv"))
 
   ### Import data: monthly output statistics on case data
   LRcoefsList <- list()
   for(m in 1:length(ms)){
-    LRcoefsList[[m]] <- read.csv(paste0("output/", cn, "_MonthlyOutputFor_", ms[m], ".csv"))
+    LRcoefsList[[m]] <- read.csv(paste0("output_script2/", cn, "_MonthlyOutputFor_", ms[m], ".csv"))
   }
 
   state_names <- LRcoefsList[[1]]$state
@@ -95,7 +96,7 @@ for (l in 1:length(countries)){
   colnames(classifications) <- ms
   classifications <- cbind(state=state_names, classifications)
 
-  f <- paste0("output/", cn, "_classified_monthly.csv")
+  f <- paste0("output_script3/", cn, "_classified_monthly.csv")
   write.csv(classifications, f, row.names=F)
 }
 
