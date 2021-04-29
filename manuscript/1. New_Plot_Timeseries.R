@@ -21,7 +21,7 @@ library(ggfortify)
 library(tsbox)
 
 # Load surveillance data with ISO codes (output of script 0.Add_ADM0_code.R )
-dogs.ISO <- read.csv("data/SIRVERA_dogs16_ISO.csv")
+dogs.ISO <- read.csv("manuscript/data/SIRVERA_dogs16_ISO.csv")
 ## Extract unique ISO codes for list of countries I want to loop through.
 countries <- c(unique(dogs.ISO$ADM0_ISO))
 
@@ -124,5 +124,45 @@ for (l in 1:length(countries)){
 
 
 #ggplot(cn.df) # doesn't work don't know why
+
+ggplot(dogs.ISO, aes(x=factor(Ano), fill=ADM0_ISO))+
+    geom_histogram(stat="count") +
+    ggtitle("Time Series")
+
+test<-which(dogs.ISO$ADM0_ISO == countries[1])
+test<-dogs.ISO[test,]
+
+ggplot(test, aes(x=factor(Ano), fill=UnidMaior))+
+  geom_histogram(stat="count") +
+  ggtitle("Time Series")
+
+test$month<-NA
+
+test$CASO_DATA_CERTIFIC
+
+for (i in 1:length(test$Ano)) {
+  list<-as.data.frame(strsplit((strsplit(test$CASO_DATA_CERTIFIC, " ")[[i]][1]), "-"))
+  names(list)<-"date"
+  test$month[i]<-paste(list$date[1], list$date[2], sep = "-")
+}
+
+dogs.ISO$month<-NA
+for (i in 1:length(dogs.ISO$Ano)) {
+  list<-as.data.frame(strsplit((strsplit(dogs.ISO$CASO_DATA_CERTIFIC, " ")[[i]][1]), "-"))
+  names(list)<-"date"
+  dogs.ISO$month[i]<-paste(list$date[1], list$date[2], sep = "-")
+}
+
+ggplot(dogs.ISO, aes(x=factor(month), fill=ADM0_ISO))+
+  geom_histogram(stat="count") +
+  ggtitle("Time Series")
+
+plot<-ggplot(test, aes(x=factor(month), fill=UnidMaior))+
+  geom_histogram(stat="count") +
+  ggtitle("Time Series")
+
+test<-test[-c(which(test$UnidMaior == "Sin Informacion")),]
+
+ggsave(paste(countries[1], ".png", sep = ""), plot = plot)
 
 
